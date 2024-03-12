@@ -1,19 +1,48 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
-import { Account } from "../../types/Account";
+import { Account, Auth } from "../../types/Account";
 import LoginForm from "../LoginForm/LoginForm";
 import "./Navbar.css";
+import Cookies from "js-cookie";
+import { useAppProvider } from "../../provider/AppProvider";
 
 function Navbar() {
-  const [account, setAccount] = useState<Account | null>(null);
+  const { setAccount, setAuth, account } = useAppProvider();
+
+  const getCookies = useCallback(() => {
+    const accessToken = Cookies.get("_access_token");
+    const client = Cookies.get("_client");
+    const uid = Cookies.get("_uid");
+    const user = JSON.parse(localStorage.getItem("USER") as string);
+    if (accessToken && client && uid && user) {
+      setAccount(user);
+      setAuth({
+        accessToken,
+        client,
+        uid,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    getCookies();
+  }, [getCookies]);
 
   const updateAccount = useCallback(
-    (account: Account) => {
-      setAccount(account);
+    ({ user, auth }: { user: Account; auth: Auth }) => {
+      Cookies.set("_access_token", auth.accessToken);
+      Cookies.set("_client", auth.client);
+      Cookies.set("_uid", auth.uid);
+      localStorage.setItem("USER", JSON.stringify(user));
+      getCookies();
     },
-    [setAccount]
+    [getCookies]
   );
+
+  useEffect(() => {
+
+  })
 
   return (
     <Row>
