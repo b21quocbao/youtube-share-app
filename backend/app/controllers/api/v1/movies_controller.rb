@@ -16,8 +16,10 @@ class Api::V1::MoviesController < ApplicationController
     )
 
     if movie.save
+      ActionCable.server.broadcast 'movies_channel', movie.as_json(include: %i[user])
+
       render json: { code: 200, status: 'success',
-                     body: movie.as_json }
+                     body: movie.as_json(include: %i[user]) }
     else
       render json: { code: 400, status: 'error',
                      body: movie.errors.full_messages }

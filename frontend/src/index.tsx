@@ -10,6 +10,7 @@ import ShareMovieForm from "./components/ShareMovieForm/ShareMovieForm";
 import { IconContext } from "react-icons";
 import { Col, Container, Row } from "react-bootstrap";
 import { AppProvider } from "./provider/AppProvider";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -26,20 +27,18 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <AppProvider>
-      <IconContext.Provider value={{ className: "react-icons" }}>
-        <Container fluid>
-          <Row className="mt-3 justify-content-center">
-            <Col md={11} style={{ width: "80%" }}>
-              <Navbar />
-              <RouterProvider router={router} />
-            </Col>
-          </Row>
-        </Container>
-      </IconContext.Provider>
-    </AppProvider>
-  </React.StrictMode>
+  <AppProvider>
+    <IconContext.Provider value={{ className: "react-icons" }}>
+      <Container fluid>
+        <Row className="mt-3 justify-content-center">
+          <Col md={11} style={{ width: "80%" }}>
+            <Navbar />
+            <RouterProvider router={router} />
+          </Col>
+        </Row>
+      </Container>
+    </IconContext.Provider>
+  </AppProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
