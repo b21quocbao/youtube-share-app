@@ -83,6 +83,7 @@ For backend developers or full-stack developers looking to deploy using Docker:
    ```bash
    docker-compose run api rails db:create db:migrate
    docker-compose up
+   docker-compose run api rails test
    ```
 
 This will serve your application at `http://localhost:3000`.
