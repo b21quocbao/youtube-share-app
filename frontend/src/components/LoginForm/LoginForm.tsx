@@ -27,7 +27,6 @@ function LoginForm({
           "Content-Type": "application/x-www-form-urlencoded",
         },
         body: urlencoded,
-        redirect: "follow",
       }
     );
     const result = await response.json();
@@ -47,7 +46,6 @@ function LoginForm({
           "Content-Type": "application/x-www-form-urlencoded",
         },
         body: urlencoded,
-        redirect: "follow",
       }
     );
     const result = await response.json();

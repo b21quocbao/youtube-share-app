@@ -61,7 +61,14 @@ function Navbar() {
             <a href="/share" className="btn btn-dark me-3">
               Share a movie
             </a>
-            <Button variant="outline-dark">Logout</Button>
+            <Button onClick={() => {
+              setAuth(null);
+              setAccount(null);
+              Cookies.remove("_access_token");
+              Cookies.remove("_client");
+              Cookies.remove("_uid");
+              localStorage.removeItem("USER");
+            }} variant="outline-dark">Logout</Button>
           </div>
         ) : (
           <LoginForm updateAccount={updateAccount} />
