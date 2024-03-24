@@ -9,6 +9,7 @@ Before you begin, ensure you have the following software and tools installed:
 - Node.js v18.19.0 and npm 10.2.3
 - MySQL 8.0
 - Docker 25.0.3 (optional, for Docker deployment)
+- Chrome 123.0.6312.58
 
 ## Installation & Configuration
 Follow these steps to get your development environment set up:
@@ -63,13 +64,20 @@ To run the test suite:
 - For Rails (backend tests):
   ```bash
   cd backend
-  rails test
+  rspec
   ```
-- For React (frontend tests):
+- For Integration tests (make sure you've installed chrome browser):
   ```bash
-  cd frontend
-  npm test
+  cd integration-test
+  node main.js
   ```
+
+- Test cases
+   - Unit test
+      - [x] [User](backend/spec/models/user_spec.rb) 
+      - [x] [Movies](backend/spec/models/movies_spec.rb) 
+   - Integration test
+      - [x] [Browser](integration-test/main.js)
 
 ## Docker Deployment
 For backend developers or full-stack developers looking to deploy using Docker:

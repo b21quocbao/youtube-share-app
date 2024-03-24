@@ -1,0 +1,23 @@
+en:
+  attributes:
+    user: &model Member
+    user_id: *model
+    user_name: *model
+    users: *model
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            invitation_code:
+              miss_match: does not match
+            password:
+              invalid: must include numbers, symbols (e.g., @, %, "), and both uppercase and lowercase letters
+              password_matches_name: cannot use the same string as in the name
+              password_matches_email: cannot use the same string as in the email address
+              password_matches_tel: cannot use the same string as the last four digits of the telephone number
+    models:
+      user: Member
+    attributes:
+      user:
+        name: Member Name
